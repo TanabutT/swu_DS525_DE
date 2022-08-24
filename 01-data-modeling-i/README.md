@@ -18,6 +18,15 @@ virtualenv --python C:\Python310\python.exe venv_data_modeling1
 .\venv_data_modeling1\Scripts\activate
 pip install -r requirements.txt
 ```
+## Getting Started linux
+ENV is name of virtual environment can name up to user 
+example CUTECAT then 
+source CUTECAT/bin/active
+```sh
+python -m venv ENV
+source ENV/bin/activate
+pip install -r requirements.txt
+```
 
 ### Prerequisite when install psycopg2 package
 
