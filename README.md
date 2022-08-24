@@ -1,5 +1,4 @@
-# DS525
+# swu-ds525-2-week1-datamodeling1
 
-Moodle: https://moodle.swu.ac.th/course/view.php?id=2271
-
-Dataset: https://api.github.com/events
+## Weeks
+- week1 : [data modeling I](./week1-datamodeling)
