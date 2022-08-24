@@ -60,4 +60,4 @@ python .\etl.py
 ```
 
 ER_DIAGRAM
-![er-diagram](.event-er-diagram.jpg)
+![er](.event-er-diagram.jpg)
