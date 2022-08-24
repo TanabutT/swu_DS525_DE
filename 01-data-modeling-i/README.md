@@ -59,5 +59,5 @@ still in venv then run :
 python .\etl.py 
 ```
 
-ER_DIAGRAM
+## ER_DIAGRAM in postgres
 ![er](./event-er-diagram.jpg)
