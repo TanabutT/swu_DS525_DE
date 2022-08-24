@@ -59,8 +59,5 @@ still in venv then run :
 python .\etl.py 
 ```
 
-To check more detail in json data please look into file 
-```sh
-eda_json.ipynb 
-```
-openwith jupyter lab or jupyter notebook to explore more.
+ER_DIAGRAM
+![er-diagram](.er)
