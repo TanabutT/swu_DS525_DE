@@ -117,18 +117,6 @@ fact_event_table_insert = ("""INSERT INTO fact_event
 
 
 
-
-# FIND SONGS
-
-song_select = ("""SELECT a.song_id, a.artist_id 
- FROM songs as a 
- LEFT JOIN artists as b
- ON a.artist_id = b.artist_id
- WHERE a.title = %s
- AND b.name = %s
- AND a.duration = %s;
-""")
-
 # QUERY LISTS
 
 create_table_queries = [
@@ -146,7 +134,3 @@ drop_table_queries = [
     fact_event_table_drop
     ]
 
-# insert_table_queries = [
-#     dim_actor_table_insert, 
-    
-#     ]
