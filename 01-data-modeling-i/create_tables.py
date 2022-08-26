@@ -1,25 +1,9 @@
 import psycopg2
+# separate sql queries in another file
+# import the sql queries below:
 from sql_queries import *
 
 print("try connect to postgresdb")
-
-# table_drop = "DROP TABLE IF EXISTS songplays"
-
-# table_create = """
-#     CREATE TABLE IF NOT EXISTS xxx (
-#     )
-# """
-
-# create_table_queries = [
-    
-#     #table_create,
-#     fact_event_table_create,    
-# ]
-
-# drop_table_queries = [
-#     table_drop,
-# ]
-
 
 def drop_tables(cur, conn) -> None:
     """
@@ -52,8 +36,7 @@ def main():
         host="localhost",
         database="postgres",
         user="postgres",
-        password="postgres")
-        #"host=127.0.0.1:8080 dbname=postgres user=postgres password=postgres"
+        password="postgres")        
     
     cur = conn.cursor()
 
