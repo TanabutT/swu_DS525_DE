@@ -127,10 +127,10 @@ create_table_queries = [
     fact_event_table_create
     ]
 drop_table_queries = [
+    fact_event_table_drop,
     dim_actor_table_drop, 
     dim_repo_table_drop, 
     dim_payload_push_table_drop, 
-    dim_org_table_drop,
-    fact_event_table_drop
+    dim_org_table_drop
     ]
 
