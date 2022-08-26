@@ -126,6 +126,7 @@ create_table_queries = [
     dim_org_table_create,
     fact_event_table_create
     ]
+    # order in drop table should drop fact first all constrain will free and no need to use casecade
 drop_table_queries = [
     fact_event_table_drop,
     dim_actor_table_drop, 

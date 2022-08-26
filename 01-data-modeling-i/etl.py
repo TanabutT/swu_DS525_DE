@@ -5,16 +5,7 @@ import logging
 from typing import List
 from datetime import datetime
 from sql_queries import *
-
 import psycopg2
-
-
-# table_insert = """
-#     INSERT INTO users (
-#         xxx
-#     ) VALUES (%s)
-#     ON CONFLICT (xxx) DO NOTHING
-# """
 
 
 def get_files(filepath: str) -> List[str]:
@@ -45,9 +36,7 @@ def process(cur, conn, filepath):
         with open(datafile, "r") as f:
             data = json.loads(f.read())
             for each in data:
-                # Print some sample data
-                # print(each["id"], each["type"], each["actor"]["login"])
-                
+                               
                 # Insert data into tables here
 
                 record_to_insert_dim_actor = (
@@ -67,31 +56,9 @@ def process(cur, conn, filepath):
 
                 cur.execute(dim_actor_table_insert, record_to_insert_dim_actor)
                 cur.execute(dim_repo_table_insert, record_to_insert_dim_repo)                
-                conn.commit()
-
-                # payload_action = None
-                # if "push_id" in list(each['payload'].keys()):
-                #     payload_action          = each["payload"]["push_id"]
-                #     payload_size            = each["payload"]["size"]       
-                #     payload_distint_size    = each["payload"]["distinct_size"]
-                #     payload_ref             = each["payload"]["ref"]        
-                #     payload_head            = each["payload"]["head"]       
-                #     payload_before          = each["payload"]["before"]
-                #     payload_commits         = each["payload"]["commits"]
-                #     print('this row has push_id')     
-                # elif "action" in list(each["payload"].keys()):
-                #     payload_action = each["payload"]["action"]
-                #     payload_size            = None
-                #     payload_distint_size    = None
-                #     payload_ref             = None
-                #     payload_head            = None
-                #     payload_before          = None
-                #     payload_commits         = None
-                #     print('payload_action--no push_id')                     
-                # else:
-                #     print("payload push_id not found - payload action not found") 
+                conn.commit()   
                 
-                #if none skip row how????  here the answer below !!!!! (beware of if condition below will be AND conditon from here)
+        #if none skip row how????  here the answer below !!!!! (beware of if condition below will be AND conditon from here)
             for each in data:
                 if each.get("payload").get("push_id") == None:
                     continue
@@ -115,9 +82,7 @@ def process(cur, conn, filepath):
             for each in data:                
                 if each.get("org") == None:
                     continue
-                # count_org_exist += 1   # same as count_org_exist = count_org_exist + 1
-                # print(count_org_exist)
-                # print(each.get("org").get("id"))
+                
                 record_to_insert_dim_org = (
                     each.get("org").get("id"), 
                     each.get("org").get("login"),
@@ -149,17 +114,14 @@ def process(cur, conn, filepath):
                     org_id_insert, # org_id,  
                     curr_dt # event_time -- datetime timestamp
                     )
-                # print("payload org_id: ", org_id_insert )   
-                # print("Current datetime: ", curr_dt)     
+               
 
                 cur.execute(fact_event_table_insert, record_to_insert_fact_table)
                 conn.commit()
                 
 
 def main():
-    # conn = psycopg2.connect(
-    #     "host=127.0.0.1 dbname=postgres user=postgres password=postgres"
-    # )
+    
     conn = psycopg2.connect(
         host="localhost",
         database="postgres",
