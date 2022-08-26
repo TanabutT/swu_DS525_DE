@@ -1,5 +1,5 @@
 # DROP TABLES
-
+# actualy cascade no need to use if drop sql queries order is correct
 fact_event_table_drop = "DROP TABLE IF EXISTS fact_event;"
 dim_actor_table_drop = "DROP TABLE IF EXISTS dim_actor CASCADE;"
 dim_repo_table_drop = "DROP TABLE IF EXISTS dim_repo CASCADE;"
