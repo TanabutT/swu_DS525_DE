@@ -56,68 +56,64 @@ def process(cur, conn, filepath):
 
                 cur.execute(dim_actor_table_insert, record_to_insert_dim_actor)
                 cur.execute(dim_repo_table_insert, record_to_insert_dim_repo)                
-                conn.commit()   
-                
-        #if none skip row how????  here the answer below !!!!! (beware of if condition below will be AND conditon from here)
-            for each in data:
-                if each.get("payload").get("push_id") == None:
-                    continue
-                # print(each.get("payload").get("push_id"))  
-
-                record_to_insert_dim_payload_push = ( 
-                    each["payload"].get("push_id"),                    
-                    each["payload"].get("size", None),
-                    each["payload"].get("distinct_size", None),
-                    each["payload"].get("ref", None),
-                    each["payload"].get("head", None),
-                    each["payload"].get("before", None),
-                    str(each["payload"].get("commits", None))
-                )
-
-                cur.execute(dim_payload_push_table_insert, record_to_insert_dim_payload_push)
-                conn.commit()
-
-            #if none skip row how????  here the answer below !!!!!
-            # count_org_exist = 0
-            for each in data:                
-                if each.get("org") == None:
-                    continue
-                
-                record_to_insert_dim_org = (
-                    each.get("org").get("id"), 
-                    each.get("org").get("login"),
-                    each.get("org").get("gravatar_id"),
-                    each.get("org").get("url"),
-                    each.get("org").get("avatar_url")
-                    )    
-
-                cur.execute(dim_org_table_insert, record_to_insert_dim_org)
-                conn.commit()
-
-
-            for each in data:                
-                org_id_insert = None
-                if each.get("org") == None:
-                    pass
-                else: 
-                    org_id_insert = each.get("org").get("id")
-                
-                record_to_insert_fact_table = (
-                    each.get("id"), # event_id , 
-                    each.get("type"), # event_type, 
-                    each.get("actor").get("id"), # actor_id,  
-                    each.get("repo").get("id"), # repo_id,   
-                    each.get("payload").get("action"), # payload_action, 
-                    each.get("payload").get("push_id"), # payload_push_id,  
-                    each.get("public"), # public,  
-                    each.get("created_at"), # create_at,   
-                    org_id_insert, # org_id,  
-                    curr_dt # event_time -- datetime timestamp
+                conn.commit() 
+        
+                if each.get("payload").get("push_id") != None:                
+                    record_to_insert_dim_payload_push = ( 
+                        each["payload"].get("push_id"),                    
+                        each["payload"].get("size", None),
+                        each["payload"].get("distinct_size", None),
+                        each["payload"].get("ref", None),
+                        each["payload"].get("head", None),
+                        each["payload"].get("before", None),
+                        str(each["payload"].get("commits", None))
                     )
-               
 
-                cur.execute(fact_event_table_insert, record_to_insert_fact_table)
-                conn.commit()
+                    cur.execute(dim_payload_push_table_insert, record_to_insert_dim_payload_push)
+                    conn.commit()   
+
+                           
+                if each.get("org") != None:                                                                           
+                    record_to_insert_dim_org = (
+                        each.get("org").get("id"),                        
+                        each.get("org").get("login"),
+                        each.get("org").get("gravatar_id"),
+                        each.get("org").get("url"),
+                        each.get("org").get("avatar_url")
+                        )    
+                                 
+                    record_to_insert_fact_table = (
+                        each.get("id"), # event_id , 
+                        each.get("type"), # event_type, 
+                        each.get("actor").get("id"), # actor_id,  
+                        each.get("repo").get("id"), # repo_id,   
+                        each.get("payload").get("action"), # payload_action, 
+                        each.get("payload").get("push_id"), # payload_push_id,  
+                        each.get("public"), # public,  
+                        each.get("created_at"), # create_at,   
+                        each.get("org").get("id"), # org_id,
+                        curr_dt # event_time -- datetime timestamp
+                        )
+
+                    cur.execute(dim_org_table_insert, record_to_insert_dim_org)
+                    cur.execute(fact_event_table_insert, record_to_insert_fact_table)
+                    conn.commit()
+                else:
+                    record_to_insert_fact_table = (
+                        each.get("id"), # event_id , 
+                        each.get("type"), # event_type, 
+                        each.get("actor").get("id"), # actor_id,  
+                        each.get("repo").get("id"), # repo_id,   
+                        each.get("payload").get("action"), # payload_action, 
+                        each.get("payload").get("push_id"), # payload_push_id,  
+                        each.get("public"), # public,  
+                        each.get("created_at"), # create_at,   
+                        each.get("org"), # org_id,
+                        curr_dt # event_time -- datetime timestamp
+                        )
+                    cur.execute(fact_event_table_insert, record_to_insert_fact_table)
+                    conn.commit()
+
                 
 
 def main():
