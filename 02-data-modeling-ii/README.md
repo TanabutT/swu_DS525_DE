@@ -1,5 +1,5 @@
 # Data Modeling II
-### Data model
+## Data model in cassandra
 | actor_id | login_name | numberofEvent |
 | :---         |     :---:      |          ---: |
 | 10712109   | mvashishtha     | 2    |
