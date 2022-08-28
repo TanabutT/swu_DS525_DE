@@ -16,8 +16,8 @@ table_create = """
         actor_id bigint,
         login_name varchar,
         numberofEvent int,
-        PRIMARY KEY (actor_id)             
-    )
+        PRIMARY KEY ((actor_id,login_name))             
+    ) 
 
 """
 
@@ -123,6 +123,7 @@ def main():
     # Select data in Cassandra and print them to stdout
     query = """
     SELECT * from events
+    WHERE numberofEvent = 1
     
     """
     try:
