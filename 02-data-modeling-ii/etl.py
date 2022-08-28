@@ -16,8 +16,8 @@ table_create = """
         actor_id bigint,
         login_name varchar,
         numberofEvent int,
-        PRIMARY KEY (actor_id, numberofEvent)             
-    ) WITH CLUSTERING ORDER BY (numberofEvent DESC);
+        PRIMARY KEY (actor_id)             
+    )
 
 """
 
