@@ -9,16 +9,18 @@ import os
 
 table_drop = "DROP TABLE events"
 
-
+# create table with primary key is 
+# partition key: actor_id,login_name  
+# clustering columns: type
 table_create = """
     CREATE TABLE IF NOT EXISTS events
     (
         actor_id bigint,
         login_name varchar,
+        type varchar,
         numberofEvent int,
-        PRIMARY KEY (actor_id, numberofEvent)             
-    ) WITH CLUSTERING ORDER BY (numberofEvent DESC);
-
+        PRIMARY KEY ((actor_id,login_name),type)             
+    ) WITH CLUSTERING ORDER BY (type ASC);
 """
 
 create_table_queries = [
@@ -62,10 +64,8 @@ def get_files(filepath: str) -> List[str]:
 def process(session, filepath):
     # Get list of files from filepath
     all_files = get_files(filepath)
-    list_actor_id = []
 
     for datafile in all_files:
-        
         with open(datafile, "r") as f:
             data = json.loads(f.read())
             
@@ -74,24 +74,24 @@ def process(session, filepath):
                 # print(each["id"], each["type"], each["actor"]["login"])
                 
                 #test number of count on each actor_id
-                list_actor_id.append(each["actor"]["id"])                
-                count_actor_event = Counter(list_actor_id)
+                count_actor_event = Counter([each["actor"]["id"]])
                 number_exist_each_actor_id = count_actor_event[each["actor"]["id"]]                
                 # print(number_exist_each_actor_id)
-                
+                print(count_actor_event)
+
                 # Insert data into tables here
                 record_to_insert_events = (
                     each["actor"]["id"], 
-                    each["actor"]["login"],                    
+                    each["actor"]["login"],
+                    each["type"],
                     number_exist_each_actor_id                  
                     )
 
                 query = """
-                INSERT INTO events (actor_id, login_name, numberofEvent) 
-                VALUES  (%s, %s, %s);
+                INSERT INTO events (actor_id, login_name, type, numberofEvent) 
+                VALUES  (%s, %s, %s, %s);
                 """
                 session.execute(query,record_to_insert_events)
-    # print("list of actor_id_RAW : ", list_actor_id )
 
 def main():
     cluster = Cluster(['127.0.0.1'])
