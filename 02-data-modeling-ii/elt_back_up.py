@@ -6,12 +6,12 @@ table_drop = "DROP TABLE events"
 table_create = """
     CREATE TABLE IF NOT EXISTS events
     (
-        actor_id bigint,
-        login_name varchar,
-        numberofEvent bigint,
+        id text,
+        type text,
+        public boolean,
         PRIMARY KEY (
-            actor_id,
-            login_name            
+            id,
+            type
         )
     )
 """
@@ -55,7 +55,7 @@ def process(session, filepath):
 
 def insert_sample_data(session):
     query = f"""
-    INSERT INTO events (actor_id, login_name, numberofEvent) VALUES (23487929637, 'john', 1)
+    INSERT INTO events (id, type, public) VALUES ('23487929637', 'IssueCommentEvent', true)
     """
     session.execute(query)
 
@@ -89,7 +89,7 @@ def main():
 
     # Select data in Cassandra and print them to stdout
     query = """
-    SELECT * from events WHERE actor_id = 23487929637 AND login_name = 'john'
+    SELECT * from events WHERE id = '23487929637' AND type = 'IssueCommentEvent'
     """
     try:
         rows = session.execute(query)
