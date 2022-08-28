@@ -16,11 +16,9 @@ table_create = """
     CREATE TABLE IF NOT EXISTS events
     (
         actor_id bigint,
-        login_name varchar,
-        type varchar,
-        numberofEvent int,
-        PRIMARY KEY ((actor_id,login_name),type)             
-    ) WITH CLUSTERING ORDER BY (type ASC);
+        login_name varchar,        
+        PRIMARY KEY (actor_id,login_name)             
+    ) 
 """
 
 create_table_queries = [
@@ -82,14 +80,14 @@ def process(session, filepath):
                 # Insert data into tables here
                 record_to_insert_events = (
                     each["actor"]["id"], 
-                    each["actor"]["login"],
-                    each["type"],
-                    number_exist_each_actor_id                  
+                    each["actor"]["login"]
+                    # each["type"],
+                    # number_exist_each_actor_id                  
                     )
 
                 query = """
                 INSERT INTO events (actor_id, login_name, type, numberofEvent) 
-                VALUES  (%s, %s, %s, %s);
+                VALUES  (%s,  %s);
                 """
                 session.execute(query,record_to_insert_events)
 
