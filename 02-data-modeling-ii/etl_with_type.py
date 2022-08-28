@@ -15,9 +15,11 @@ table_drop = "DROP TABLE events"
 table_create = """
     CREATE TABLE IF NOT EXISTS events
     (
+        event_id varchar,
         actor_id bigint,
-        login_name varchar,        
-        PRIMARY KEY (actor_id,login_name)             
+        login_name varchar,
+               
+        PRIMARY KEY (event_id,actor_id)             
     ) 
 """
 
@@ -72,13 +74,14 @@ def process(session, filepath):
                 # print(each["id"], each["type"], each["actor"]["login"])
                 
                 #test number of count on each actor_id
-                count_actor_event = Counter([each["actor"]["id"]])
-                number_exist_each_actor_id = count_actor_event[each["actor"]["id"]]                
+                # count_actor_event = Counter([each["actor"]["id"]])
+                # number_exist_each_actor_id = count_actor_event[each["actor"]["id"]]                
                 # print(number_exist_each_actor_id)
-                print(count_actor_event)
+                # print(count_actor_event)
 
                 # Insert data into tables here
                 record_to_insert_events = (
+                    each["id"],
                     each["actor"]["id"], 
                     each["actor"]["login"]
                     # each["type"],
@@ -86,8 +89,8 @@ def process(session, filepath):
                     )
 
                 query = """
-                INSERT INTO events (actor_id, login_name, type, numberofEvent) 
-                VALUES  (%s,  %s);
+                INSERT INTO events (event_id, actor_id, login_name) 
+                VALUES  (%s, %s, %s);
                 """
                 session.execute(query,record_to_insert_events)
 
@@ -120,7 +123,8 @@ def main():
 
     # Select data in Cassandra and print them to stdout
     query = """
-    SELECT * from events
+    SELECT actor_id  from events
+    GROUP BY actor_id
     
     """
     try:
