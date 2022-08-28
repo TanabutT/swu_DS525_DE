@@ -43,4 +43,4 @@ python .\etl.py
 ```
 
 ## Example query from cassandra keyspace
-![er](./event-er-diagram.jpg)
+![er](./example_query.jpg)
