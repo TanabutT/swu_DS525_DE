@@ -70,3 +70,11 @@ python .\etl.py
 
 ## ER_DIAGRAM in postgres
 ![er](./event-er-diagram.jpg)
+
+### open browser to connect postgres and login: http://localhost:8080/
+ - System: PostgreSQL
+ - Server: postgres
+ - Username: postgres
+ - Password: postgres
+ - Database: postgres
+
