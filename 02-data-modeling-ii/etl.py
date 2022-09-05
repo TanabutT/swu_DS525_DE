@@ -76,7 +76,7 @@ def process(session, filepath):
                 
                 #test number of count on each actor_id
                 list_actor_id.append(each["actor"]["id"])                
-                count_actor_event = Counter(list_actor_id)
+                count_actor_event = Counter(list_actor_id)                
                 number_exist_each_actor_id = count_actor_event[each["actor"]["id"]]                
                 # print(number_exist_each_actor_id)
                 
@@ -92,7 +92,7 @@ def process(session, filepath):
                 VALUES  (%s, %s, %s);
                 """
                 session.execute(query,record_to_insert_events)
-    # print("list of actor_id_RAW : ", list_actor_id )
+    
 
 def main():
     cluster = Cluster(['127.0.0.1'])

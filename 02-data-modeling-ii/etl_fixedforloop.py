@@ -9,18 +9,16 @@ import os
 
 table_drop = "DROP TABLE events"
 
-# create table with primary key is 
-# partition key: actor_id,login_name  
-# clustering columns: type
+
 table_create = """
     CREATE TABLE IF NOT EXISTS events
-    (
-        event_id varchar,
-        actor_id bigint,
+    (        
         login_name varchar,
-               
-        PRIMARY KEY (event_id,actor_id)             
-    ) 
+        numberofEvent int,
+        PRIMARY KEY (login_name,numberofEvent)             
+    );
+     
+
 """
 
 create_table_queries = [
@@ -64,35 +62,37 @@ def get_files(filepath: str) -> List[str]:
 def process(session, filepath):
     # Get list of files from filepath
     all_files = get_files(filepath)
+    
+    list_actor_login = []
 
     for datafile in all_files:
+        
         with open(datafile, "r") as f:
             data = json.loads(f.read())
             
-            for each in data:
-                # Print some sample data
-                # print(each["id"], each["type"], each["actor"]["login"])
+            for each in data:                   
                 
-                #test number of count on each actor_id
-                # count_actor_event = Counter([each["actor"]["id"]])
-                # number_exist_each_actor_id = count_actor_event[each["actor"]["id"]]                
-                # print(number_exist_each_actor_id)
-                # print(count_actor_event)
+                #test number of count on each actor_login                
+                list_actor_login.append(each["actor"]["login"]) 
+    
+    count_actorlogin_event = Counter(list_actor_login)    
+    # actor_login_key = count_actorlogin_event.keys()
+    # number_exist_each_actor_id = count_actorlogin_event.values()
+        
+    for key, value in count_actorlogin_event.items():
+        # Insert data into tables here
+        record_to_insert_events = ( 
+            key,
+            value           
+            )
 
-                # Insert data into tables here
-                record_to_insert_events = (
-                    each["id"],
-                    each["actor"]["id"], 
-                    each["actor"]["login"]
-                    # each["type"],
-                    # number_exist_each_actor_id                  
-                    )
-
-                query = """
-                INSERT INTO events (event_id, actor_id, login_name) 
-                VALUES  (%s, %s, %s);
-                """
-                session.execute(query,record_to_insert_events)
+        query = """
+        INSERT INTO events (login_name, numberofEvent) 
+        VALUES  (%s, %s);
+        """
+        session.execute(query,record_to_insert_events)
+    
+    
 
 def main():
     cluster = Cluster(['127.0.0.1'])
@@ -123,8 +123,8 @@ def main():
 
     # Select data in Cassandra and print them to stdout
     query = """
-    SELECT actor_id  from events
-    GROUP BY actor_id
+    SELECT * from events
+    WHERE numberofEvent > 1 ALLOW FILTERING;
     
     """
     try:
