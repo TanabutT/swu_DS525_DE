@@ -12,11 +12,10 @@ table_drop = "DROP TABLE events"
 
 table_create = """
     CREATE TABLE IF NOT EXISTS events
-    (
-        actor_id bigint,
+    (        
         login_name varchar,
         numberofEvent int,
-        PRIMARY KEY ((actor_id,login_name))             
+        PRIMARY KEY (login_name,numberofEvent)             
     );
      
 
@@ -63,35 +62,36 @@ def get_files(filepath: str) -> List[str]:
 def process(session, filepath):
     # Get list of files from filepath
     all_files = get_files(filepath)
-    list_actor_id = []
+    
+    list_actor_login = []
 
     for datafile in all_files:
         
         with open(datafile, "r") as f:
             data = json.loads(f.read())
             
-            for each in data:
-                # Print some sample data
-                # print(each["id"], each["type"], each["actor"]["login"])
+            for each in data:                   
                 
-                #test number of count on each actor_id
-                list_actor_id.append(each["actor"]["id"])                
-                count_actor_event = Counter(list_actor_id)                
-                number_exist_each_actor_id = count_actor_event[each["actor"]["id"]]                
-                # print(number_exist_each_actor_id)
-                
-                # Insert data into tables here
-                record_to_insert_events = (
-                    each["actor"]["id"], 
-                    each["actor"]["login"],                    
-                    number_exist_each_actor_id                  
-                    )
+                #test number of count on each actor_login                
+                list_actor_login.append(each["actor"]["login"]) 
+    
+    count_actorlogin_event = Counter(list_actor_login)    
+    # actor_login_key = count_actorlogin_event.keys()
+    # number_exist_each_actor_id = count_actorlogin_event.values()
+        
+    for key, value in count_actorlogin_event.items():
+        # Insert data into tables here
+        record_to_insert_events = ( 
+            key,
+            value           
+            )
 
-                query = """
-                INSERT INTO events (actor_id, login_name, numberofEvent) 
-                VALUES  (%s, %s, %s);
-                """
-                session.execute(query,record_to_insert_events)
+        query = """
+        INSERT INTO events (login_name, numberofEvent) 
+        VALUES  (%s, %s);
+        """
+        session.execute(query,record_to_insert_events)
+    
     
 
 def main():
