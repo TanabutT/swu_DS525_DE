@@ -72,7 +72,7 @@ see the result in
 
 example result
 | event_id	  |   event_type      |actor_login  |	repo_name	                    | created_at           |
-| :---:       |   :---:           |:---:        |:---:                          | :---:                |
+| :---        |   :---            |:---:        |:---:                          | ---:                 |
 |23487929637  |	IssueCommentEvent	|  sukhada	  |350org/ak_intl_v3	            | 2022-08-17T15:51:05Z |
 |23487929676	|PushEvent	        |  yousabu	  |yousabu/ansible_rhce	          | 2022-08-17T15:51:05Z |
 |23487929674	|PushEvent	        |  MathisGD	  |morpho-dao/morpho-utils        |	2022-08-17T15:51:05Z |
