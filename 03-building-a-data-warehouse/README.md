@@ -79,4 +79,4 @@ To close all service
 
 ## watch cost explorer
 
-![cost](resources/redshift_cost1.jpg)
+![cost](resouces/redshift_cost1.jpg)
