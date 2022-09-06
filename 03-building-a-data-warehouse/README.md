@@ -10,8 +10,10 @@
 - Number of node = 1
   - awsuser
   - set password
-- click Associate IAM roles select - [x] LabRole and click Associate IAM roles
-- Additional configurations deselect - [ ] Use defaults
+- click Associate IAM roles select 
+   - [x] LabRole and click Associate IAM roles
+- Additional configurations deselect 
+   - [ ] Use defaults
 - Network and security
   - Default VPC
   - VPC security groups use default
