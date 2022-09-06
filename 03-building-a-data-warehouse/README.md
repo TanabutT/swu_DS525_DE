@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS github_event (
   
 )
 ```
-
+![AWS Redshift query console](resource/redshift_jsonpaht0.jpg)
 
 ## insert data from json with json_path
 
