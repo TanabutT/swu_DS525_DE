@@ -1,6 +1,7 @@
 # Building a Data Warehouse
 
-## Getting Started 
+## Getting Started
+### create cluster AWS Redshift
 * go to aws console - Redshift 
 * Provision (create) cluster
 
@@ -17,11 +18,18 @@
   - Cluster subnet group use Cluster subnet group-1 (it don't have create one in Configuration > subnet group , with all available zone)
   - leave the remaining default
   - create cluster
-```sh
-python -m venv ENV
-source ENV/bin/activate
-pip install -r requirements.txt
-```
+
+### create bucket AWS S3
+* go to aws console - S3 
+* create bucket
+  - make sure - [x] **Block all public access** 
+  - keep - [x] Disable for Bucket Versioning
+  - create bucket
+### upload json to bucket
+* Json event file
+* Json path file
+
+
 
 ## Getting Started window (with git bash via vs code)
 
