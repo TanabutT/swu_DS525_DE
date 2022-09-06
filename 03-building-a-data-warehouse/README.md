@@ -1,6 +1,16 @@
 # Building a Data Warehouse
 
 ## Getting Started 
+* go to aws console - Redshift 
+* Provision (create) cluster
+
+- AQUA (Advanced Query Accelerator) turn off
+- Node type = ra3.xplus  - the smallest
+- Number of node = 1
+  - awsuser
+  - set password
+- click Associate IAM roles select [x]LabRole and click Associate IAM roles
+- Additional configurations deselect [ ]Use defaults
 
 ```sh
 python -m venv ENV
