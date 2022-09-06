@@ -10,8 +10,10 @@
 - Number of node = 1
   - awsuser
   - set password
-- click Associate IAM roles select - [x]LabRole and click Associate IAM roles
-- Additional configurations deselect - [ ]Use defaults
+- click Associate IAM roles select 
+   - [x] LabRole and click Associate IAM roles
+- Additional configurations deselect 
+   - [ ] Use defaults
 - Network and security
   - Default VPC
   - VPC security groups use default
@@ -49,7 +51,7 @@ CREATE TABLE IF NOT EXISTS github_event (
   
 )
 ```
-
+![AWS Redshift query console](resource/redshift_jsonpaht0.jpg)
 
 ## insert data from json with json_path
 
@@ -65,15 +67,18 @@ To show data in table github_event:
 ```sh
 select * from github_event
 ```
+see the result in 
+[github_event_query_result.csv](github_event_query_result.csv)
 
 To close all service
 - S3 empty bucket
 - Delete S3 bucket
-- Delete Redshift cluster** with out keeping snapshot** - [ ]snap shot 
+- Delete Redshift cluster** with out keeping snapshot** - [ ] snap shot 
 
 
 
 
 
 ## watch cost explorer
-![ ](./resources/*)
+
+![cost](resource/redshift_cost1.jpg)
