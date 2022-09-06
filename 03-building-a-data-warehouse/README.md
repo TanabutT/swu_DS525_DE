@@ -10,8 +10,8 @@
 - Number of node = 1
   - awsuser
   - set password
-- click Associate IAM roles select - [x]LabRole and click Associate IAM roles
-- Additional configurations deselect - [ ]Use defaults
+- click Associate IAM roles select - [x] LabRole and click Associate IAM roles
+- Additional configurations deselect - [ ] Use defaults
 - Network and security
   - Default VPC
   - VPC security groups use default
@@ -69,7 +69,7 @@ select * from github_event
 To close all service
 - S3 empty bucket
 - Delete S3 bucket
-- Delete Redshift cluster** with out keeping snapshot** - [ ]snap shot 
+- Delete Redshift cluster** with out keeping snapshot** - [ ] snap shot 
 
 
 
