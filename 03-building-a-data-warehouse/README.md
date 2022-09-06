@@ -66,13 +66,14 @@ To show data in table github_event:
 select * from github_event
 ```
 
-To create table in Cassandra after docker compose up
-check if in venv then run :
+To close all service
+- S3 empty bucket
+- Delete S3 bucket
+- Delete Redshift cluster** with out keeping snapshot** - [ ]snap shot 
 
 
-```sh
-python .\etl.py 
-```
 
-## Example query from cassandra keyspace
-![er](./example_query.jpg)
+
+
+## watch cost explorer
+![ ](./resources/*)
