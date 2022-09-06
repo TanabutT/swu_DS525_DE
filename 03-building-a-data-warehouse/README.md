@@ -29,14 +29,20 @@
 * Json event file
 * Json path file
 
+### Check IAM Role for LabRole
+* go IAM
+* choose Role
+* seach "LabRole"
+* copy ARN
 
 
-## Getting Started window (with git bash via vs code)
+
+## create table in Redshift
 
 ```sh
 CREATE TABLE IF NOT EXISTS github_event (
-  id primary key,
-  type text,
+  event_id text primary key,
+  event_type text,
   actor_login text,
   repo_name text,
   created_at text
@@ -45,16 +51,19 @@ CREATE TABLE IF NOT EXISTS github_event (
 ```
 
 
-## xxx
+## insert data from json with json_path
 
 ```sh
-docker-compose up
+copy github_event
+from 's3://tanabruce-bucket06092022/github_events_01.json'
+iam_role 'arn:aws:iam::423544405765:role/LabRole' 
+json 's3://tanabruce-bucket06092022/events_json_path.json';
 ```
 
-To shutdown, press Ctrl+C and run:
+To show data in table github_event:
 
 ```sh
-docker-compose down
+select * from github_event
 ```
 
 To create table in Cassandra after docker compose up
