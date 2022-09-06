@@ -69,6 +69,7 @@ python .\etl.py
 ```
 
 ## ER_DIAGRAM in postgres
+link how to generate dbdiagram <iframe width="560" height="315" src='https://dbdiagram.io/embed/6316a9fb0911f91ba54029c0'> </iframe>
 ![er](./event-er-dbdiagram.png)
 
 ### open browser to connect postgres and login: http://localhost:8080/
