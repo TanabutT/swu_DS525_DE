@@ -11,13 +11,18 @@ pip install -r requirements.txt
 ## Getting Started window (with git bash via vs code)
 
 ```sh
-python -m venv ENV
-source ENV/Scripts/activate
-pip install -r requirements.txt
+CREATE TABLE IF NOT EXISTS github_event (
+  id primary key,
+  type text,
+  actor_login text,
+  repo_name text,
+  created_at text
+  
+)
 ```
 
 
-## Running Cassandra
+## xxx
 
 ```sh
 docker-compose up
