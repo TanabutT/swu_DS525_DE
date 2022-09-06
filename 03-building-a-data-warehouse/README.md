@@ -67,6 +67,8 @@ To show data in table github_event:
 ```sh
 select * from github_event
 ```
+see the result in 
+![github_event_query_result.csv](github_event_query_result.csv)
 
 To close all service
 - S3 empty bucket
