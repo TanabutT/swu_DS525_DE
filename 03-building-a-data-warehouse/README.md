@@ -78,4 +78,5 @@ To close all service
 
 
 ## watch cost explorer
-![d](./resources/redshift_cost1.jpg)
+
+![cost](resources/etl.data-modeling.png)
