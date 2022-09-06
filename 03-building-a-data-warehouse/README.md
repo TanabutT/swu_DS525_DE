@@ -9,9 +9,14 @@
 - Number of node = 1
   - awsuser
   - set password
-- click Associate IAM roles select [x]LabRole and click Associate IAM roles
-- Additional configurations deselect [ ]Use defaults
-
+- click Associate IAM roles select - [x]LabRole and click Associate IAM roles
+- Additional configurations deselect - [ ]Use defaults
+- Network and security
+  - Default VPC
+  - VPC security groups use default
+  - Cluster subnet group use Cluster subnet group-1 (it don't have create one in Configuration > subnet group , with all available zone)
+  - leave the remaining default
+  - create cluster
 ```sh
 python -m venv ENV
 source ENV/bin/activate
