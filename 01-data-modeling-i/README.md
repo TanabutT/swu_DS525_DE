@@ -69,7 +69,7 @@ python .\etl.py
 ```
 
 ## ER_DIAGRAM in postgres
-![er](./event-er-diagram.jpg)
+![er](./event-er-dbdiagram.png)
 
 ### open browser to connect postgres and login: http://localhost:8080/
  - System: PostgreSQL
