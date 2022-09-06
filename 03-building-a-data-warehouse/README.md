@@ -70,6 +70,14 @@ select * from github_event
 see the result in 
 [github_event_query_result.csv](github_event_query_result.csv)
 
+example result
+| event_id	  |   event_type      |actor_login  |	repo_name	                    | created_at           |
+| :---:       |   :---:           |:---:        |:---:                          | :---:                |
+|23487929637  |	IssueCommentEvent	|  sukhada	  |350org/ak_intl_v3	            | 2022-08-17T15:51:05Z |
+|23487929676	|PushEvent	        |  yousabu	  |yousabu/ansible_rhce	          | 2022-08-17T15:51:05Z |
+|23487929674	|PushEvent	        |  MathisGD	  |morpho-dao/morpho-utils        |	2022-08-17T15:51:05Z |
+|23487929661	|PushEvent	        |  BR-Junior	|BR-Junior/crud-com-vue-e-quasar|2022-08-17T15:51:05Z  |
+
 To close all service
 - S3 empty bucket
 - Delete S3 bucket
