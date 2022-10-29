@@ -28,4 +28,5 @@ with DAG (
 
     t2 = EmptyOperator(task_id="t2")
 
-    t1 >> echo_hello >> print_hey >> t2
+    # t1 >> echo_hello >> print_hey >> t2
+    t1 >> [echo_hello , print_hey] >> t2
