@@ -37,6 +37,6 @@ with DAG (
         task_id="get_file",
         python_callable=_get_files,
         op_kwargs={
-            "filepath" : ".opt/airflow/dags/data",
+            "filepath" : "/opt/airflow/dags/data",
         }
     )
