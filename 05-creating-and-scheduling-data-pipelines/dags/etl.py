@@ -1,3 +1,5 @@
+from typing import List
+import os
 from airflow import DAG
 from airflow.utils import timezone
 from airflow.operators.empty import EmptyOperator
@@ -34,6 +36,6 @@ with DAG (
         task_id="get_file",
         python_callable=_get_files,
         op_kwargs={
-            "filepath" : "./data",
+            "filepath" : ".opt/airflow/dags/data",
         }
     )
