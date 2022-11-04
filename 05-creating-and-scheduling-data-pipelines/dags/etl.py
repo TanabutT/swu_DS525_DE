@@ -43,7 +43,7 @@ def _create_tables():
         conn.commit()
 
 
-def process(**context):
+def _process(**context):
     
     hook = PostgresHook(postgres_conn_id="my_postgres")
     conn = hook.get_conn()
@@ -57,6 +57,11 @@ def process(**context):
     # Get list of files from filepath
     all_files = ti.xcom_pull(task_ids="get_files", key="return_value")
     # all_files = get_files(filepath)
+    print("all_files : ", len(all_files))
+    print("curr_dt : ", curr_dt)
+
+    print("ti : ", ti)
+
 
     
 
@@ -151,7 +156,7 @@ with DAG (
 ) as dag:
 
     get_files = PythonOperator(
-        task_id="get_file",
+        task_id="get_files",
         python_callable=_get_files,
         op_kwargs={
             "filepath" : "/opt/airflow/dags/data",
