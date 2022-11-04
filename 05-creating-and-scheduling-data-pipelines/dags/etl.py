@@ -1,11 +1,16 @@
 from typing import List
 import os
 import glob
+import json
+from sql_queries import *
+
 from airflow import DAG
 from airflow.utils import timezone
 from airflow.operators.empty import EmptyOperator
 from airflow.operators.bash import BashOperator
 from airflow.operators.python import PythonOperator
+from airflow.providers.postgres.hooks.postgres import PostgresHook
+
 
 
 def _get_files(filepath: str) -> List[str]:
@@ -24,6 +29,18 @@ def _get_files(filepath: str) -> List[str]:
 
     return all_files
 
+def _create_tables():
+    """
+    Creates each table using the queries in `create_table_queries` list.
+    """
+    hook = PostgresHook(postgres_conn_id="my_postgres")
+    conn = hook.get_conn()
+    cur = conn.cursor()
+
+    for query in create_table_queries:
+        cur.execute(query)
+        conn.commit()
+
 
 with DAG (
     "etl",
@@ -40,3 +57,10 @@ with DAG (
             "filepath" : "/opt/airflow/dags/data",
         }
     )
+
+    create_tables = PythonOperator(
+        task_id="create_tables",
+        python_callable=_create_tables,
+    )
+
+    get_files >> create_tables

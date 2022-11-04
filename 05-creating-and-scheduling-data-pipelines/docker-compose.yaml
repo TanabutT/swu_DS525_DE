@@ -217,7 +217,7 @@ services:
       - -c
       - airflow
 
-  warehouse:
+  warehouse: #name of server - service
     image: postgres:13
     environment:
       POSTGRES_USER: postgres
