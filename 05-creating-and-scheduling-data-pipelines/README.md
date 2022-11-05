@@ -18,8 +18,8 @@ option -d คือการทำให้ terminal run docker container แล
 
 **หมายเหตุ:** จริง ๆ แล้วเราสามารถเอาโฟลเดอร์ `data` ไว้ที่ไหนก็ได้ที่ Airflow ที่เรารันเข้าถึงได้ แต่เพื่อความง่ายสำหรับโปรเจคนี้ เราจะนำเอาโฟลเดอร์ `data` ไว้ในโฟลเดอร์ `dags` เลย
 
-เราจะสามารถเข้าไปที่หน้า Airflow UI ได้ที่ port 8080
-เราจะสามารถเข้าไปที่หน้า postgres database ได้ที่ port 8088 
+### เราจะสามารถเข้าไปที่หน้า Airflow UI ได้ที่ port 8080
+### เราจะสามารถเข้าไปที่หน้า postgres database ได้ที่ port 8088 
 การ connection postgres database ให้ดูจากไฟล์ docker-compose.yaml (server ใช้ชื่อเดียวกับ service docker คือ "warehouse"
 
 
@@ -30,4 +30,15 @@ option -d คือการทำให้ terminal run docker container แล
 You can configure limits on the memory, CPU, and swap size allocated to WSL 2 in a .wslconfig file.
 https://learn.microsoft.com/en-us/windows/wsl/wsl-config#configure-global-options-with-wslconfig
 or https://www.makeuseof.com/vmmem-process-high-resource-consumption/  
+
+ในที่นี้ทำการ limit WSL memory=2GB ทำให้เครื่องไม่หน่วงมากเกินไป
+
+## DAG code
+ดูได้ที่ ไฟล์ ./dag/etl.py
+แยก ไฟล์ sql command ไว้ใน ./dag/sql_queries.py
+
+## Pic after run docker container and run Airflow pipeline
+![er](./pics/)
+
+
 
