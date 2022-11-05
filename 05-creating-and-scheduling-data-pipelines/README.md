@@ -18,8 +18,9 @@ option -d คือการทำให้ terminal run docker container แล
 
 **หมายเหตุ:** จริง ๆ แล้วเราสามารถเอาโฟลเดอร์ `data` ไว้ที่ไหนก็ได้ที่ Airflow ที่เรารันเข้าถึงได้ แต่เพื่อความง่ายสำหรับโปรเจคนี้ เราจะนำเอาโฟลเดอร์ `data` ไว้ในโฟลเดอร์ `dags` เลย
 
-### เราจะสามารถเข้าไปที่หน้า Airflow UI ได้ที่ port 8080
-### เราจะสามารถเข้าไปที่หน้า postgres database ได้ที่ port 8088 
+- เราจะสามารถเข้าไปที่หน้า Airflow UI ได้ที่ port 8080  
+- เราจะสามารถเข้าไปที่หน้า postgres database ได้ที่ port 8088  
+
 การ connection postgres database ให้ดูจากไฟล์ docker-compose.yaml (server ใช้ชื่อเดียวกับ service docker คือ "warehouse"
 
 
