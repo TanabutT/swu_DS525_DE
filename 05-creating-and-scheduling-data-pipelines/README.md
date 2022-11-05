@@ -27,9 +27,9 @@ option -d คือการทำให้ terminal run docker container แล
 ## problems along the process and how to solve them
 เจอปัญหา ใน window 10 คือ เมื่อ run docker container เครื่องของเรา cpu and memory จะโดนใช้งานผ่าน virtual machine จากการใช้ WSL ของ docker เอง
 แก้ด้วยการ ไป config ใน setting ของ docker > Resources > Advanced
-You can configure limits on the memory, CPU, and swap size allocated to WSL 2 in a .wslconfig file.
-https://learn.microsoft.com/en-us/windows/wsl/wsl-config#configure-global-options-with-wslconfig
-or https://www.makeuseof.com/vmmem-process-high-resource-consumption/  
+- You can configure limits on the memory, CPU, and swap size allocated to WSL 2 in a .wslconfig file.
+ - https://learn.microsoft.com/en-us/windows/wsl/wsl-config#configure-global-options-with-wslconfig or  
+ - https://www.makeuseof.com/vmmem-process-high-resource-consumption/  
 
 ในที่นี้ทำการ limit WSL memory=2GB ทำให้เครื่องไม่หน่วงมากเกินไป
 
