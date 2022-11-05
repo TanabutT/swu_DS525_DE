@@ -34,11 +34,33 @@ or https://www.makeuseof.com/vmmem-process-high-resource-consumption/
 ในที่นี้ทำการ limit WSL memory=2GB ทำให้เครื่องไม่หน่วงมากเกินไป
 
 ## DAG code
-ดูได้ที่ ไฟล์ ./dag/etl.py
+ดูได้ที่ ไฟล์ ./dag/etl.py  
 แยก ไฟล์ sql command ไว้ใน ./dag/sql_queries.py
 
-## Pic after run docker container and run Airflow pipeline
-![er](./pics/)
+## Pic after run docker container and run Airflow pipeline  
 
+- DAG list (show only tag: workshop)  
+![er](./05_pipeline_with_DAG_pic/DAG_list_tag_workshop.jpg) 
+
+- DAG graph show the pipeline data flow  
+![er](./05_pipeline_with_DAG_pic/DAG_graph.jpg)  
+ 
+- Admin in airflow keep credential secure for connection to postgres database  
+![er](./05_pipeline_with_DAG_pic/connection_keep.jpg)
+
+- grid detail and log in airflow tool  
+![er](./05_pipeline_with_DAG_pic/grid_detail_process.jpg)
+
+![er](./05_pipeline_with_DAG_pic/grid_log_process.jpg)  
+
+- Insert to postgres database  
+![er](./05_pipeline_with_DAG_pic/postgres_success_insert0.jpg)  
+![er](./05_pipeline_with_DAG_pic/postgres_success_insert.jpg)  
+
+- database schema in postgres database  
+![er](./05_pipeline_with_DAG_pic/db_schema.jpg)  
+
+- test xcom use case to send small data through pipeline  
+![er](./05_pipeline_with_DAG_pic/xcom_context_ti.jpg)
 
 
