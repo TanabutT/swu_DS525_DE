@@ -23,11 +23,11 @@ models:
   - name: completed_orders
     description: "Completed orders with first name and last name"
     columns:
-      - name: order_id
+      - name: id
         tests:
           - unique
           - not_null
-      - name: order_status
+      - name: status
         tests:
           - accepted_values:
               values: ['completed']
