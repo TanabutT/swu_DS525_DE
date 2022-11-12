@@ -1,4 +1,4 @@
 select
-    status
+    order_status
 from {{ ref('completed_orders') }}
-where status != 'completed'
+where order_status != 'completed'
