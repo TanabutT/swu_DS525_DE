@@ -66,3 +66,5 @@ To view docs (on Gitpod)
 dbt docs generate
 dbt docs serve
 ```
+
+## Run and show Lineage Graph
