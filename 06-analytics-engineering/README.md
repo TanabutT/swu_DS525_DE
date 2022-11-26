@@ -68,3 +68,5 @@ dbt docs serve
 ```
 
 ## Run and show Lineage Graph
+
+![Alt text](reff-pic/LineageGraph%202022-11-12%20200052.jpg)
