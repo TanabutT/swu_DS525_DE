@@ -39,9 +39,9 @@ option -d คือการทำให้ terminal run docker container แล
 ในที่นี้ทำการ limit WSL memory=2GB ทำให้เครื่องไม่หน่วงมากเกินไป
 
 ## DAG code
-ดูได้ที่ ไฟล์ [/dag/etl.py](https://github.com/TanabutT/swu_DS525_DE/blob/main/05-creating-and-scheduling-data-pipelines/dags/etl.py)  
+ดูได้ที่ ไฟล์ [/dags/etl.py](https://github.com/TanabutT/swu_DS525_DE/blob/main/05-creating-and-scheduling-data-pipelines/dags/etl.py)  
 
-แยก ไฟล์ sql command ไว้ใน [/dags/sql_queries.py](/dags/sql_queries.py)
+แยก ไฟล์ sql command ไว้ใน [/dags/sql_queries.py](./dags/sql_queries.py)
 
 ## Pic after run docker container and run Airflow pipeline  
 
