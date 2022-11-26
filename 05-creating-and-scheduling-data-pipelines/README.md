@@ -39,7 +39,7 @@ option -d คือการทำให้ terminal run docker container แล
 ในที่นี้ทำการ limit WSL memory=2GB ทำให้เครื่องไม่หน่วงมากเกินไป
 
 ## DAG code
-ดูได้ที่ ไฟล์ [./dag/etl.py](/dag/etl.py)  
+ดูได้ที่ ไฟล์ [/dag/etl.py](https://github.com/TanabutT/swu_DS525_DE/blob/main/05-creating-and-scheduling-data-pipelines/dags/etl.py)  
 
 แยก ไฟล์ sql command ไว้ใน [./dag/sql_queries.py](./dag/sql_queries.py)
 
